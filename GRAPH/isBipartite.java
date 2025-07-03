@@ -62,7 +62,7 @@ public class Main {
     }
 
     public static void main(String[] args) {
-        int V = 7;
+        int V = 5;
         ArrayList<Edge>[] graph = new ArrayList[V];
         createGraph(graph);
         System.out.println(isBipartite(graph));
