@@ -1,4 +1,5 @@
 import java.util.*;
+
 public class Main {
     //Recursion
     public static int countWays(int n){
