@@ -17,8 +17,8 @@ class Main {
         //grid
         int sr=(row/3)*3;
         int sc=(col/3)*3;
-        for(int i=sr;i<row+3;i++){
-            for(int j=sc;j<col+3;j++){
+        for(int i=sr;i<sr+3;i++){
+            for(int j=sc;j<sc+3;j++){
                 if(sudoku[i][j]==digit){
                     return false;
                 }
