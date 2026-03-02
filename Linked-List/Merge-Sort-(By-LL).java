@@ -1,85 +1,99 @@
 import java.util.*;
 
-class LinkedList{
-    public static class Node{
-        int data;
-        Node next;
-        public Node(int data){
-            this.data=data;
+public class Main{
+    static class ListNode{
+        int val;
+        ListNode next;
+
+        public ListNode(int val){
+            this.val=val;
+            this.next=null;
         }
     }
-    public static Node head;
+    public static ListNode getMid(ListNode head){
+        ListNode slow=head;
+        ListNode fast=head.next;
 
-    public static Node getMid(Node head){
-        Node slow=head;
-        Node fast=head.next;
         while(fast!=null && fast.next!=null){
             slow=slow.next;
             fast=fast.next.next;
         }
         return slow;
     }
-    public static Node merge(Node head1, Node head2){
-        Node mergell=new Node(-1);
-        Node temp=mergell;
+    public static ListNode merge(ListNode head1,ListNode head2){
+        ListNode mergeLL=new ListNode(-1);
+        ListNode temp=mergeLL;
 
         while(head1!=null && head2!=null){
-            if(head1.data<=head2.data){
+            if(head1.val<=head2.val){
                 temp.next=head1;
                 head1=head1.next;
-                temp=temp.next;
             }
             else{
                 temp.next=head2;
                 head2=head2.next;
-                temp=temp.next;
             }
+            temp=temp.next;
         }
-
         while(head1!=null){
             temp.next=head1;
             head1=head1.next;
             temp=temp.next;
         }
-
         while(head2!=null){
             temp.next=head2;
             head2=head2.next;
             temp=temp.next;
         }
 
-        return mergell.next;
+        return mergeLL.next;
     }
-    public static Node mergeSort(Node head){
+    public static ListNode mergeSort(ListNode head){
         if(head==null || head.next==null){
             return head;
         }
-
-        Node mid=getMid(head);
-        Node rightHead=mid.next;
+        ListNode mid=getMid(head);
+        ListNode secHead=mid.next;
         mid.next=null;
 
-        Node newLeft=mergeSort(head);
-        Node newRight=mergeSort(rightHead);
+        ListNode L1=mergeSort(head);
+        ListNode L2=mergeSort(secHead);
 
-        return merge(newLeft,newRight);
+        return merge(L1,L2);
     }
-
-    public static void printLL(){
-        Node temp=head;
+    public static ListNode sortList(ListNode head) {
+        head=mergeSort(head);
+        return head;
+    }
+    public static void printLL(ListNode head){
+        ListNode temp=head;
         while(temp!=null){
-            System.out.print(temp.data+" ");
+            System.out.print(temp.val+" ");
             temp=temp.next;
         }
         System.out.println();
     }
-    public static void main(String[] args) {
-        head=new Node(4);
-        head.next=new Node(3);
-        head.next.next=new Node(2);
-        head.next.next.next=new Node(1);
+    public static ListNode arrayToLinkedList(int[]arr){
+        if(arr.length==0){
+            return null;
+        }
+        ListNode head=new ListNode(arr[0]);
+        ListNode tail=head;
 
-        head=mergeSort(head);
-        printLL();
+        for(int i=1;i<arr.length;i++){
+            tail.next=new ListNode(arr[i]);
+            tail=tail.next;
+        }
+        return head;
+    }
+    public static void main(String[] args) {
+        int[]arr={1,5,8,3,2};
+        ListNode head=arrayToLinkedList(arr);
+
+        System.out.println("-----Before Sorting-----");
+        printLL(head);
+        System.out.println("------After Sorting-----");
+        sortList(head);
+        printLL(head);
     }
 }
