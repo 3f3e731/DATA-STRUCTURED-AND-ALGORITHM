@@ -11,7 +11,7 @@ public class Main {
             activities[i][1]=start[i];
             activities[i][2]=end[i];
         }
-        Arrays.sort(activities,Comparator.comparingDouble(o->o[2]));
+        Arrays.sort(activities,Comparator.comparingDouble(o->o[2]));    // Arrays.sort(activities, (a,b) -> Integer.compare(a[2], b[2]));
 
         int maxAct=0;
         List<Integer>ans=new ArrayList<>();
