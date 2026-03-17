@@ -10,7 +10,7 @@ public class Main {
         Arrays.sort(CostHor,Collections.reverseOrder());
 
         int h=0,v=0;
-        int hp=0,vp=0;
+        int hp=1,vp=1;
         int MinCost=0;
 
         while(h<CostHor.length && v<CostVer.length){
