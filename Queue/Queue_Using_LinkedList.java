@@ -5,7 +5,7 @@ class QueueB {
         Node next;
         Node(int data){
             this.data=data;
-            this.next=next;
+            this.next=null;
         }
     }
     static class Queue{
