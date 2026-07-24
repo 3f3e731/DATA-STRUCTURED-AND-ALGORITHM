@@ -118,18 +118,21 @@ public class LinkedList{
     }
     
     public void reverse(){
-        Node prev=null;
-        Node curr=head;
+        Node prev = null;
+        Node curr = head;
         Node next;
-        while(curr!=null){
-            next=curr.next;
-            curr.next=prev;
-            curr.prev=next;
-            prev=curr;
-            curr=next;
-        }
-        head=prev;
-    }
+
+       tail = head;
+
+       while(curr != null){
+            next = curr.next;
+            curr.next = prev;
+            prev = curr;
+            curr = next;
+       }
+
+       head = prev;
+   }
     
     
     public void deleteNthNodeEnd(int n){
